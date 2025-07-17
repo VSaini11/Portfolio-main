@@ -40,7 +40,6 @@ document.addEventListener('scroll', function() {
   });
 });
 
-// Initialize fade-in sections on page load
 document.addEventListener('DOMContentLoaded', function() {
   const sections = document.querySelectorAll('.fade-in');
   const triggerBottom = window.innerHeight / 5 * 4;
@@ -50,6 +49,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (sectionTop < triggerBottom) {
       section.classList.add('fade-in-visible');
+    }
+  });
+
+  // Mobile menu functionality
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  // Toggle mobile menu
+  mobileMenuButton.addEventListener('click', function() {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when clicking on nav links
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+      mobileMenu.classList.add('hidden');
     }
   });
 });
