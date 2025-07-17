@@ -40,6 +40,20 @@ document.addEventListener('scroll', function() {
   });
 });
 
+// Initialize fade-in sections on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('.fade-in');
+  const triggerBottom = window.innerHeight / 5 * 4;
+  
+  sections.forEach(section => {
+    const sectionTop = section.getBoundingClientRect().top;
+    
+    if (sectionTop < triggerBottom) {
+      section.classList.add('fade-in-visible');
+    }
+  });
+});
+
 var app = document.getElementById('typewriter');
 
         var typewriter = new Typewriter(app, {
